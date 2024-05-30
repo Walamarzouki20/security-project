@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: cursive, sans-serif;
+            background-color:white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+            background-image: url('C:\Users\DELL\Desktop\junior spring semester\security\face_recognition\background.jpg');
+        }
+        
+
+        .login-container {
+            
+            background-color: hslrgba(255, 255, 255, 0.5);
+            padding: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 0 60px rgba(128, 128, 128, 0.3);
+            max-width: 400px;
+            width: 100%;
+            margin-left: 11%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 70px;   
+        }
+        
+        .input-container {
+            margin-bottom: 23px; 
+        }
+        
+        .input-container label {
+            display: block;
+            margin-bottom: 18px; 
+            color: black;
+        }
+        h1{
+            justify-content: center;
+            display: flex;
+            color: black;
+        }
+        .instruction {
+            color: balck;
+            font-size: 18px;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .input-field {
+            position: relative;
+        }
+
+        .input-field input {
+            width: calc(100% - 20px); 
+            padding: 10px;
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid #ccc; 
+            box-sizing: border-box;
+            outline: none;
+            background-color: transparent; 
+            margin-bottom: 10px;
+            transition: margin-top 0.3s; 
+        }
+        .input-field input:focus {
+            margin-top: -20px; 
+        }
+
+        .input-field input:not(:placeholder-shown) + label {
+            margin-top: -20px; 
+            font-size: 14px; 
+            color: #888; 
+        }
+        .input-field ion-icon {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            color: #888; 
+        }
+        .button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px 10px; 
+            border: none;
+            border-radius: 40px;
+            box-sizing: border-box;
+            outline: none;
+            background-color: hsl(233deg 36% 38%);
+            font-family: cursive, sans-serif;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 20px; 
+        }
+        
+        button:hover {
+            transform: scale(0.9); 
+        }
+        .logo {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            max-width: 200px;}
+            nav {
+                overflow: hidden;
+                width: 100%;
+                position: fixed;
+                top: 70px;
+                left: -220px;
+                z-index: 1000;
+            }
+            nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                text-align: right;
+            }
+            nav li {
+                display: inline-block;
+                margin-right: 30px;
+            }
+            nav li a {
+                display: block;
+                color: black;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 19px;
+                font-weight: bold;
+            }
+            nav li a:hover {
+                background-color: #f0f0f0;
+                color: black;
+            }
+            .welcome-container {
+                float: left;
+                width: 500px; 
+                padding-left: 50px; 
+            }
+    
+            .welcome-message {
+                color: #333; 
+                font-size: 25px;
+                font-weight: bold; 
+            }
+    </style>
+</head>
+
+   
+<body >
+    
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo" class="logo">
+    <div style="position: absolute; top: 70px;font-family: Arial, sans-serif; left: 200px; font-size: 50px; color: black;">Axe </div><div style="position: absolute; top: 70px;font-family: Arial, sans-serif; left: 300px; font-size: 50px; color: green;">Finance</div>
+    <nav>
+        <ul>
+            <li><a href="#" >Home</a></li>
+            <li><a href="#" >Employees Space</a></li>
+            <li><a href="#" >News</a></li>
+            <li><a href="#" >Company</a></li>
+        </ul>
+    </nav>
+    <div class="welcome-container">
+        <p class="welcome-message">Dear employee, to be able to get into the company website you have first to identify yourself. </p>
+        <p class="welcome-message">Please enter your credentials. </p>
+    </div>
+    <div class="login-container"id="loginContainer">
+    <h1>WELCOME</h1>
+    <form method="post">
+        <div class="input-container">
+            {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+          {% endwith %}
+        <label for="username">  USERNAME</label>
+        <div class="input-field">
+        <input type="text" name="username" required><br>
+        <ion-icon name="people-outline"></ion-icon>
+
+        </div>
+        </div>
+        <div class="input-container">
+            
+            <label for="password">PASSWORD</label>
+            <div class="input-field">
+        <input type="password" name="password" required ><br>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="button-container">
+        <button type="submit" >LOGIN</button>
+        </div>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </form>
+   
+</div>
+
+
+</body>
+</html>
